@@ -38,6 +38,8 @@ public abstract class MultimediaItem {
                 "title='" + title + '\'' +
                 '}';
     }
+
+    // todo: mutati comportamentul clasei intr-o interfata pe care clasele copil sa o implementeze
     public abstract void play();
 
     public abstract void stop();

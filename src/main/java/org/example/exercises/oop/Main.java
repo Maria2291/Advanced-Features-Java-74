@@ -16,7 +16,14 @@ package org.example.exercises.oop;
 public class Main {
 
     public static void main(String[] args) {
+        MultimediaAudio multimediaAudio = new MultimediaAudio("Audio song");
+        MultimediaVideo multimediaVideo = new MultimediaVideo("Video Movie");
 
+        multimediaAudio.play();
+        multimediaAudio.stop();
+
+        multimediaVideo.play();
+        multimediaVideo.stop();
     }
 
 }

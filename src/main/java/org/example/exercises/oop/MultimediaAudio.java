@@ -8,11 +8,11 @@ public class MultimediaAudio extends MultimediaItem{
 
     @Override
     public void play() {
-        System.out.println("MultimediaAudio" + title + "plays");
+        System.out.println("MultimediaAudio" + title + " plays");
     }
 
     @Override
     public void stop() {
-        System.out.println("MultimediaAudio" + title + "stops");
+        System.out.println("MultimediaAudio" + title + " stops");
     }
 }
