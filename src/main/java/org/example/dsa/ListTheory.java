@@ -67,6 +67,14 @@ public class ListTheory {
 
         stringList.removeAll(new ArrayList<>(List.of("banana", "cucumber", "water")));
         System.out.println(stringList.size() + "  " + stringList);
-    }
+        System.out.println("------------------------------------------------------------------------------");
 
+        /* OTHERS */
+//        stringList.contains("water");
+//        stringList.contains("watermelon");
+
+        System.out.println("------------------------------------------------------------------------------");
+        stringList.clear();
+        System.out.println(stringList);
+    }
 }
