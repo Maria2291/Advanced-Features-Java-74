@@ -5,9 +5,12 @@ package org.example.exercises.oop;
         - clase copil: MultimediaAudio si MultimediaVideo
 
     Implement abstraction by defining an abstract class MultimediaItem with abstract methods for playing and stopping.
-    \
+        - clasa parinte va fi abstracta
+        - metodele generice din clasa parinte vor fi abstracte.
     Create concrete classes Audio and Video that extend the MultimediaItem class and implement their specific methods
     for playing and stopping.
+        - cream clasele copil MultimediaAudio si MultimediaVideo
+        - suprascriem metodele play/stop din clasa parinte
 */
 
 public class Main {
@@ -15,4 +18,5 @@ public class Main {
     public static void main(String[] args) {
 
     }
+
 }
