@@ -9,7 +9,15 @@ import java.util.*;
     ratings.
  */
 
-class Movie {
+// Comparable seteaza o regula UNIVERSALA de sortare
+// In cazul in care folosim Collections.sort sau list.sort() putem opta pentru utilizarea regulii setate in clasa de
+// obiect sau o putem suprascrie cu un Comparator specific
+
+// Comparable si Comparator sunt ambele interfete utilizate in contextul sortarii.
+// Comparable e utilizat la nivelul claselor de obiect.
+// Comparator e utilizat la nivelul algoritmilor de sortate tipici structurilor de date.
+
+class Movie implements Comparable<Movie> {
     private String title;
     private Double rating;
     private LocalDate releaseDate;
@@ -52,6 +60,12 @@ class Movie {
                 ", releaseDate=" + releaseDate +
                 '}';
     }
+
+    @Override
+    public int compareTo(Movie anotherMovie) {
+        return this.getTitle().compareTo(anotherMovie.getTitle());
+        // comparam this -> CURRENT MOVIE cu ANOTHER MOVIE
+    }
 }
 
 public class MovieRatings {
@@ -59,10 +73,10 @@ public class MovieRatings {
     public static void main(String[] args) {
         Set<Movie> movieUnorderedSet = new HashSet<>();
 
-        movieUnorderedSet.add(new Movie("Inception", 8.8, LocalDate.of(2004,12,4)));
-        movieUnorderedSet.add(new Movie("It ends with us", 9.0, LocalDate.of(2024,8,1)));
-        movieUnorderedSet.add(new Movie("Titanic", 9.0, LocalDate.of(1999,10,5)));
-        movieUnorderedSet.add(new Movie("Eat,pray,love", 8.0, LocalDate.of(2020,7,5)));
+        movieUnorderedSet.add(new Movie("Inception", 8.8, LocalDate.of(2004, 12, 4)));
+        movieUnorderedSet.add(new Movie("It ends with us", 9.0, LocalDate.of(2024, 8, 1)));
+        movieUnorderedSet.add(new Movie("Titanic", 9.0, LocalDate.of(1999, 10, 5)));
+        movieUnorderedSet.add(new Movie("Eat,pray,love", 8.0, LocalDate.of(2020, 7, 5)));
 
         System.out.println("Setul contine:\n" + movieUnorderedSet);
 
@@ -72,16 +86,16 @@ public class MovieRatings {
         displayList(movieSortedList);
 
         /*
-        * Comparator are structura de Builder class.
-        *
-        * Ce este un Builder?
-        * - este o clasa de obiect unde semnatura metodelor cu tip de returnare contine clasa curenta, astfel incat sa
-        * putem avea chained invocations (apelari inlantuite).
-        *
-        * Comparator
-        * .comparing (...)
-        * .thenCompare (...)
-        * .etc;
+         * Comparator are structura de Builder class.
+         *
+         * Ce este un Builder?
+         * - este o clasa de obiect unde semnatura metodelor cu tip de returnare contine clasa curenta, astfel incat sa
+         * putem avea chained invocations (apelari inlantuite).
+         *
+         * Comparator
+         * .comparing (...)
+         * .thenCompare (...)
+         * .etc;
          */
 
         movieSortedList.sort(Comparator
@@ -93,12 +107,12 @@ public class MovieRatings {
         System.out.println("Lista sortata contine:\n ");
         displayList(movieSortedList);
         /*
-        * Comparator.comparing(Movie::getRating)
-        * - se uita intern in clasa Movie
-        * - si compara doua elemente random din lista noastra pe beza metodei de referinta
-        * - metoda de referinta este de regula un getter (fiindca datele noastre sunt private)
-        * - referentierea directa prin numele clasei::metoda (Movie::getRating), functioneaza doar pentru
-        * metodele NEPARAMETRIZATE
+         * Comparator.comparing(Movie::getRating)
+         * - se uita intern in clasa Movie
+         * - si compara doua elemente random din lista noastra pe beza metodei de referinta
+         * - metoda de referinta este de regula un getter (fiindca datele noastre sunt private)
+         * - referentierea directa prin numele clasei::metoda (Movie::getRating), functioneaza doar pentru
+         * metodele NEPARAMETRIZATE
          * */
 
         // Collections si sort
@@ -113,10 +127,24 @@ public class MovieRatings {
         displayList(movieSortedList2);
 
         // TreeSet
+        // Set este interfata parinte pentru SortedSet
+        // SortedSet adauga functionalitatile de sortare prin comparator
+        // SortedSet este implementata de TreeSet
+        SortedSet<Movie> movieOrderedSet = new TreeSet<>();
 
+        movieOrderedSet.add(new Movie("Inception", 8.8, LocalDate.of(2004, 12, 4)));
+        movieOrderedSet.add(new Movie("It ends with us", 9.0, LocalDate.of(2024, 8, 1)));
+        movieOrderedSet.add(new Movie("Titanic", 9.0, LocalDate.of(1999, 10, 5)));
+        movieOrderedSet.add(new Movie("Eat,pray,love", 8.0, LocalDate.of(2020, 7, 5)));
+
+        System.out.println("Setul sortat contine: ");
+        displayList(movieOrderedSet);
+
+        // Se compara fiecare cod ASCII al caracterelor cu acelasi index.
     }
-    public static void displayList(List<Movie> list) {
-        for(Movie it: list) {
+
+    public static void displayList(Collection<Movie> list) {
+        for (Movie it : list) {
             System.out.println(it.getTitle() + " " + it.getRating() + " " + it.getReleaseDate());
         }
         System.out.println();
