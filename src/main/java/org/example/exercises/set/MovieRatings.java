@@ -86,8 +86,9 @@ public class MovieRatings {
 
         movieSortedList.sort(Comparator
                 .comparing(Movie::getRating)
-                .thenComparing(Movie::getReleaseDate)
                 .reversed()
+                .thenComparing(Movie::getReleaseDate)
+
         );
         System.out.println("Lista sortata contine:\n ");
         displayList(movieSortedList);
@@ -101,6 +102,17 @@ public class MovieRatings {
          * */
 
         // Collections si sort
+        List<Movie> movieSortedList2 = new ArrayList<>(movieUnorderedSet);
+        Collections.sort(
+                movieSortedList2,
+                Comparator
+                        .comparing(Movie::getReleaseDate)
+                        .reversed()
+        );
+        System.out.println("Lista sortata contine: ");
+        displayList(movieSortedList2);
+
+        // TreeSet
 
     }
     public static void displayList(List<Movie> list) {
